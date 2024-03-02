@@ -33,7 +33,7 @@ FormField.propTypes = {
   onChange: PropTypes.func,
 };
 
-const Login = () => {
+const Register = () => {
   const navigate = useNavigate();
   const [name, setName] = useState<string>(null);
   const [username, setUsername] = useState<string>(null);
@@ -41,7 +41,7 @@ const Login = () => {
     navigate("/login");
   };
 
-  const doLogin = async () => {
+  const doRegister = async () => {
     try {
       const requestBody = JSON.stringify({ username, name });
       const response = await api.post("/users", requestBody);
@@ -77,7 +77,7 @@ const Login = () => {
             <Button
               disabled={!username || !name}
               width="100%"
-              onClick={() => doLogin()}
+              onClick={() => doRegister()}
             >
               Register now
             </Button>
@@ -96,4 +96,4 @@ const Login = () => {
 /**
  * You can get access to the history object's properties via the useLocation, useNavigate, useParams, ... hooks.
  */
-export default Login;
+export default Register;
