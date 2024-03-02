@@ -37,8 +37,8 @@ const Login = () => {
   const navigate = useNavigate();
   const [name, setName] = useState<string>(null);
   const [username, setUsername] = useState<string>(null);
-  const redirectToRegister = () => {
-    navigate("/register"); // Navigate to the /register route
+  const redirectToLogin = () => {
+    navigate("/login");
   };
 
   const doLogin = async () => {
@@ -64,12 +64,12 @@ const Login = () => {
       <div className="login container">
         <div className="login form">
           <FormField
-            label="Username"
+            label="create a Username"
             value={username}
             onChange={(un: string) => setUsername(un)}
           />
           <FormField
-            label="Password"
+            label="create a Password"
             value={name}
             onChange={(n) => setName(n)}
           />
@@ -79,12 +79,12 @@ const Login = () => {
               width="100%"
               onClick={() => doLogin()}
             >
-              Login
+              Register now
             </Button>
           </div>
           <div className="register button-container">
-            <Button width="100%" onClick={redirectToRegister}>
-              No Account? Register here!
+            <Button width="100%" onClick={redirectToLogin}>
+              Login instead
             </Button>
           </div>
         </div>
