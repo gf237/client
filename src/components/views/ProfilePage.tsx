@@ -37,10 +37,15 @@ const ProfilePage = () => {
         <h2>Profile of {user.username}</h2>
         <p className="game paragraph">Details:</p>
         <p>Username: {user.username}</p>
-        <p>Password: {user.name}</p>
         <p>ID: {user.id}</p>
+        <p>Online Status: {user.status}</p>
+        <p>Creation Date: {user.creationDate}</p>
+        <p>Birthdate:</p>
+
         <Button width="100%">Edit</Button>
-        <Button width="100%">Back</Button>
+        <Button width="100%" onClick={() => navigate("/game")}>
+          Back to Overview
+        </Button>
       </div>
     );
   }
