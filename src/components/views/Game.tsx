@@ -86,7 +86,7 @@ const Game = () => {
       <div className="game">
         <ul className="game user-list">
           {users.map((user: User) => (
-            <li key={user.id}>
+            <li key={user.id} onClick={() => navigate("/profile/" + user.id)}>
               <Player user={user} />
             </li>
           ))}
