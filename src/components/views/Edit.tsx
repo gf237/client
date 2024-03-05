@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { api, handleError } from "helpers/api";
 import User from "models/User";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "components/ui/Button";
 import "styles/views/Login.scss";
 import BaseContainer from "components/ui/BaseContainer";
@@ -28,29 +28,39 @@ FormField.propTypes = {
 };
 const Edit = () => {
   const navigate = useNavigate();
-  const [username, setUsername] = useState<string>(null);
-  const [birthday, setBirthDate] = useState<Date>(null);
+  const { userId } = useParams();
+  const [user, setUsers] = useState(null);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await api.get("/users/" + userId);
+        setUsers(response.data);
+      } catch (error) {
+        console.error(
+          `Something went wrong while fetching the user's data: \n${handleError(
+            error
+          )}`
+        );
+      }
+    }
+    fetchData();
+  }, [userId]);
 
   return (
     <BaseContainer>
       <div className="login container">
         <div className="login form">
-          <FormField
-            label="Username"
-            value={username}
-            onChange={(un: string) => setUsername(un)}
-          />
+          <FormField label="Username" />
 
-          <FormField
-            label="Birthday"
-            value={birthday}
-            onChange={(bd) => setBirthDate(bd)}
-          />
+          <FormField label="Birthday" />
           <div className="login button-container">
             <Button width="100%">Save</Button>
           </div>
           <div className="register button-container">
-            <Button width="100%">Discard Changes</Button>
+            <Button width="100%" onClick={() => navigate("/profile/" + userId)}>
+              Discard Changes
+            </Button>
           </div>
         </div>
       </div>

@@ -5,7 +5,7 @@
     transform: translateY(-2px);
   }
   &:disabled {
-    cursor: default;
+    cursor: auto;
     opacity: 0.4;
     &:hover {
       transform: none;

@@ -40,11 +40,11 @@ const ProfilePage = () => {
         <p>ID: {user.id}</p>
         <p>Creation Date: {user.creationDate}</p>
         <p>Online Status: {user.status}</p>
-        <p>Birthdate:</p>
+        <p>Birthdate: {user.birthdate}</p>
 
         <Button
           width="100%"
-          onClick={() => navigate("/edit")}
+          onClick={() => navigate("/edit/" + user.id)}
           disabled={localStorage.getItem("token") !== user.token}
         >
           Edit
