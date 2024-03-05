@@ -29,33 +29,43 @@ FormField.propTypes = {
 const Edit = () => {
   const navigate = useNavigate();
   const { userId } = useParams();
-  const [user, setUsers] = useState(null);
+  const [birthday, setBirthDate] = useState<LocalDate>(null);
+  const [username, setUsername] = useState<string>(null);
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await api.get("/users/" + userId);
-        setUsers(response.data);
-      } catch (error) {
-        console.error(
-          `Something went wrong while fetching the user's data: \n${handleError(
-            error
-          )}`
-        );
-      }
+  const doUpdate = async () => {
+    try {
+      const requestBody = JSON.stringify({ username, birthday });
+      const response = await api.post("/users/" + userId, requestBody);
+
+      // Get the returned user and update a new object.
+      const user = new User(response.data);
+
+      // Login successfully worked --> navigate to the route /game in the GameRouter
+      navigate("/game");
+    } catch (error) {
+      alert(`Something went wrong during the login: \n${handleError(error)}`);
     }
-    fetchData();
-  }, [userId]);
+  };
 
   return (
     <BaseContainer>
       <div className="login container">
         <div className="login form">
-          <FormField label="Username" />
+          <FormField
+            label="Username"
+            value={username}
+            onChange={(un: string) => setUsername(un)}
+          />
 
-          <FormField label="Birthday" />
+          <FormField
+            label="Birthday"
+            value={birthday}
+            onChange={(un: LocalDate) => setBirthDate(un)}
+          />
           <div className="login button-container">
-            <Button width="100%">Save</Button>
+            <Button width="100%" onClick={() => doUpdate()}>
+              Save
+            </Button>
           </div>
           <div className="register button-container">
             <Button width="100%" onClick={() => navigate("/profile/" + userId)}>
