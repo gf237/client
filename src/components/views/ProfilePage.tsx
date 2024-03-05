@@ -38,11 +38,17 @@ const ProfilePage = () => {
         <p className="game paragraph">Details:</p>
         <p>Username: {user.username}</p>
         <p>ID: {user.id}</p>
-        <p>Online Status: {user.status}</p>
         <p>Creation Date: {user.creationDate}</p>
+        <p>Online Status: {user.status}</p>
         <p>Birthdate:</p>
 
-        <Button width="100%">Edit</Button>
+        <Button
+          width="100%"
+          onClick={() => navigate("/edit")}
+          disabled={localStorage.getItem("token") !== user.token}
+        >
+          Edit
+        </Button>
         <Button width="100%" onClick={() => navigate("/game")}>
           Back to Overview
         </Button>
