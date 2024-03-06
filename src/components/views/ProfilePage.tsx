@@ -44,7 +44,7 @@ const ProfilePage = () => {
 
         <Button
           width="100%"
-          onClick={() => navigate("/edit/" + user.id)}
+          onClick={() => navigate("/edit")}
           disabled={localStorage.getItem("token") !== user.token}
         >
           Edit

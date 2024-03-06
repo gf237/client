@@ -35,8 +35,9 @@ FormField.propTypes = {
 
 const Register = () => {
   const navigate = useNavigate();
-  const [name, setName] = useState<string>(null);
-  const [username, setUsername] = useState<string>(null);
+  const [name, setName] = useState(null);
+  const [username, setUsername] = useState(null);
+
   const redirectToLogin = () => {
     navigate("/login");
   };

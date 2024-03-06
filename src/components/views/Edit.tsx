@@ -38,7 +38,7 @@ const Edit = () => {
   const doUpdate = async () => {
     try {
       const requestBody = JSON.stringify({ username, birthday, token });
-      const response = await api.post("/users/" + userId, requestBody);
+      const response = await api(token).put("/users/" + userId, requestBody);
 
       // Get the returned user and update a new object.
       const user = new User(response.data);
