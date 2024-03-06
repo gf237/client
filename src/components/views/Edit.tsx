@@ -15,6 +15,7 @@ const FormField = (props) => {
         className="login input"
         placeholder="enter here.."
         value={props.value}
+        type={props.type}
         onChange={(e) => props.onChange(e.target.value)}
       />
     </div>
@@ -24,6 +25,7 @@ const FormField = (props) => {
 FormField.propTypes = {
   label: PropTypes.string,
   value: PropTypes.string,
+  type: PropTypes.string,
   onChange: PropTypes.func,
 };
 const Edit = () => {
@@ -31,10 +33,11 @@ const Edit = () => {
   const { userId } = useParams();
   const [birthday, setBirthDate] = useState<string>("");
   const [username, setUsername] = useState<string>("");
+  const token = localStorage.getItem("token");
 
   const doUpdate = async () => {
     try {
-      const requestBody = JSON.stringify({ username, birthday });
+      const requestBody = JSON.stringify({ username, birthday, token });
       const response = await api.post("/users/" + userId, requestBody);
 
       // Get the returned user and update a new object.
@@ -59,8 +62,9 @@ const Edit = () => {
 
           <FormField
             label="Birthday"
+            type="date"
             value={birthday}
-            onChange={(n: string) => setBirthDate(n)}
+            onChange={(n: Date) => setBirthDate(n)}
           />
           <div className="login button-container">
             <Button width="100%" onClick={() => doUpdate()}>

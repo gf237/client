@@ -40,7 +40,7 @@ const ProfilePage = () => {
         <p>ID: {user.id}</p>
         <p>Creation Date: {user.creationDate}</p>
         <p>Online Status: {user.status}</p>
-        <p>Birthdate: {user.birthdate}</p>
+        <p>Birthdate: {user.birthDate}</p>
 
         <Button
           width="100%"
