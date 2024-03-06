@@ -29,8 +29,8 @@ FormField.propTypes = {
 const Edit = () => {
   const navigate = useNavigate();
   const { userId } = useParams();
-  const [birthday, setBirthDate] = useState<LocalDate>(null);
-  const [username, setUsername] = useState<string>(null);
+  const [birthday, setBirthDate] = useState<string>("");
+  const [username, setUsername] = useState<string>("");
 
   const doUpdate = async () => {
     try {
@@ -60,7 +60,7 @@ const Edit = () => {
           <FormField
             label="Birthday"
             value={birthday}
-            onChange={(un: LocalDate) => setBirthDate(un)}
+            onChange={(n: string) => setBirthDate(n)}
           />
           <div className="login button-container">
             <Button width="100%" onClick={() => doUpdate()}>
