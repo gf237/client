@@ -12,6 +12,7 @@ const ProfilePage = () => {
   const navigate = useNavigate();
   const { userId } = useParams();
   const [user, setUsers] = useState(null);
+  localStorage.setItem("id", userId);
 
   useEffect(() => {
     async function fetchData() {

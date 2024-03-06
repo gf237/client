@@ -30,15 +30,15 @@ FormField.propTypes = {
 };
 const Edit = () => {
   const navigate = useNavigate();
-  const { userId } = useParams();
-  const [birthday, setBirthDate] = useState<string>("");
-  const [username, setUsername] = useState<string>("");
+  const userId = localStorage.getItem("id");
+  const [birthday, setBirthDate] = useState(null);
+  const [username, setUsername] = useState(null);
   const token = localStorage.getItem("token");
 
   const doUpdate = async () => {
     try {
       const requestBody = JSON.stringify({ username, birthday, token });
-      const response = await api(token).put("/users/" + userId, requestBody);
+      const response = await api.put("/users/" + userId, requestBody);
 
       // Get the returned user and update a new object.
       const user = new User(response.data);
@@ -64,7 +64,7 @@ const Edit = () => {
             label="Birthday"
             type="date"
             value={birthday}
-            onChange={(n: Date) => setBirthDate(n)}
+            onChange={(birthday) => setBirthDate(birthday)}
           />
           <div className="login button-container">
             <Button width="100%" onClick={() => doUpdate()}>
@@ -72,7 +72,10 @@ const Edit = () => {
             </Button>
           </div>
           <div className="register button-container">
-            <Button width="100%" onClick={() => navigate("/profile/" + userId)}>
+            <Button
+              width="100%"
+              onClick={() => navigate("/profile/" + localStorage.getItem("id"))}
+            >
               Discard Changes
             </Button>
           </div>
