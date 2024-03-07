@@ -12,7 +12,7 @@ const ProfilePage = () => {
   const navigate = useNavigate();
   const { userId } = useParams();
   const [user, setUsers] = useState(null);
-  localStorage.setItem("id", userId);
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     async function fetchData() {
@@ -46,7 +46,7 @@ const ProfilePage = () => {
         <Button
           width="100%"
           onClick={() => navigate("/edit")}
-          disabled={localStorage.getItem("token") !== user.token}
+          disabled={token !== user.token}
         >
           Edit
         </Button>

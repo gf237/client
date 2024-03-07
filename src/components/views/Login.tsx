@@ -53,6 +53,7 @@ const Login = () => {
 
       // Store the token into the local storage.
       localStorage.setItem("token", user.token);
+      localStorage.setItem("userId", user.id);
 
       // Set Status to "ONLINE"
       //await api.post("/status", { userId: user.id });

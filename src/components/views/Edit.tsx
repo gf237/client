@@ -30,18 +30,16 @@ FormField.propTypes = {
 };
 const Edit = () => {
   const navigate = useNavigate();
-  const userId = localStorage.getItem("id");
+  const userId = localStorage.getItem("userId");
   const [birthday, setBirthDate] = useState(null);
   const [username, setUsername] = useState(null);
   const token = localStorage.getItem("token");
+  const id = localStorage.getItem("userId");
 
   const doUpdate = async () => {
     try {
       const requestBody = JSON.stringify({ username, birthday, token });
-      const response = await api.put("/users/" + userId, requestBody);
-
-      // Get the returned user and update a new object.
-      const user = new User(response.data);
+      await api.put("/users/" + id, requestBody);
 
       // Login successfully worked --> navigate to the route /game in the GameRouter
       navigate("/game");
@@ -72,10 +70,7 @@ const Edit = () => {
             </Button>
           </div>
           <div className="register button-container">
-            <Button
-              width="100%"
-              onClick={() => navigate("/profile/" + localStorage.getItem("id"))}
-            >
+            <Button width="100%" onClick={() => navigate("/profile/" + id)}>
               Discard Changes
             </Button>
           </div>

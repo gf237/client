@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { api, handleError } from "helpers/api";
 import { Spinner } from "components/ui/Spinner";
 import { Button } from "components/ui/Button";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
 import "styles/views/Game.scss";
@@ -30,7 +30,10 @@ const Game = () => {
   // more information can be found under https://react.dev/learn/state-a-components-memory and https://react.dev/reference/react/useState
   const [users, setUsers] = useState<User[]>(null);
 
-  const logout = (): void => {
+  const logout = async () => {
+    const id = localStorage.getItem("userId");
+    const requestBody = JSON.stringify({ id });
+    await api.put("/logout", requestBody);
     localStorage.removeItem("token");
     navigate("/login");
   };
