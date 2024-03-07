@@ -37,7 +37,6 @@ const Login = () => {
   const navigate = useNavigate();
   const [name, setName] = useState<string>(null);
   const [username, setUsername] = useState<string>(null);
-  const { userId } = useParams();
 
   const redirectToRegister = () => {
     navigate("/register"); // Navigate to the /register route
@@ -51,9 +50,9 @@ const Login = () => {
       // Get the returned user and update a new object.
       const user = new User(response.data);
 
-      // Store the token into the local storage.
-      localStorage.setItem("token", user.token);
-      localStorage.setItem("userId", user.id);
+      // Store the token into the session storage.
+      sessionStorage.setItem("token", user.token);
+      sessionStorage.setItem("userId", user.id);
 
       // Set Status to "ONLINE"
       //await api.post("/status", { userId: user.id });

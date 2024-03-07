@@ -31,10 +31,9 @@ const Game = () => {
   const [users, setUsers] = useState<User[]>(null);
 
   const logout = async () => {
-    const id = localStorage.getItem("userId");
-    const requestBody = JSON.stringify({ id });
+    const id = sessionStorage.getItem("userId");
+    const requestBody = { id };
     await api.put("/logout", requestBody);
-    localStorage.removeItem("token");
     navigate("/login");
   };
 

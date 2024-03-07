@@ -50,9 +50,9 @@ const Register = () => {
       // Get the returned user and update a new object.
       const user = new User(response.data);
 
-      // Store the token into the local storage.
-      localStorage.setItem("token", user.token);
-      localStorage.setItem("userId", user.id);
+      // Store the token into the session storage.
+      sessionStorage.setItem("token", user.token);
+      sessionStorage.setItem("userId", user.id);
 
       // Login successfully worked --> navigate to the route /game in the GameRouter
       navigate("/game");
