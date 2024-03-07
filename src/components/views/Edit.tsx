@@ -30,11 +30,10 @@ FormField.propTypes = {
 };
 const Edit = () => {
   const navigate = useNavigate();
-  const userId = localStorage.getItem("userId");
   const [birthday, setBirthDate] = useState(null);
   const [username, setUsername] = useState(null);
-  const token = localStorage.getItem("token");
-  const id = localStorage.getItem("userId");
+  const token = sessionStorage.getItem("token");
+  const id = sessionStorage.getItem("userId");
 
   const doUpdate = async () => {
     try {

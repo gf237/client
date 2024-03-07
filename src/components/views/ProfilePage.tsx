@@ -12,7 +12,7 @@ const ProfilePage = () => {
   const navigate = useNavigate();
   const { userId } = useParams();
   const [user, setUsers] = useState(null);
-  const token = localStorage.getItem("token");
+  const token = sessionStorage.getItem("token");
 
   useEffect(() => {
     async function fetchData() {

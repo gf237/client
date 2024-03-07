@@ -34,6 +34,8 @@ const Game = () => {
     const id = sessionStorage.getItem("userId");
     const requestBody = { id };
     await api.put("/logout", requestBody);
+    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("userId");
     navigate("/login");
   };
 
