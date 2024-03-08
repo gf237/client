@@ -4,9 +4,7 @@ import { Spinner } from "components/ui/Spinner";
 import { Button } from "components/ui/Button";
 import { useNavigate, useParams } from "react-router-dom";
 import BaseContainer from "components/ui/BaseContainer";
-import PropTypes from "prop-types";
 import "styles/views/Game.scss";
-import { User } from "types";
 
 const ProfilePage = () => {
   const navigate = useNavigate();

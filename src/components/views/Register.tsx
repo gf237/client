@@ -54,7 +54,7 @@ const Register = () => {
       sessionStorage.setItem("token", user.token);
       sessionStorage.setItem("userId", user.id);
 
-      // Login successfully worked --> navigate to the route /game in the GameRouter
+      // Register successfully worked --> navigate to the route /game in the GameRouter
       navigate("/game");
     } catch (error) {
       alert(`Something went wrong during the login: \n${handleError(error)}`);

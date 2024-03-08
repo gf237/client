@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { api, handleError } from "helpers/api";
-import User from "models/User";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "components/ui/Button";
 import "styles/views/Login.scss";
@@ -28,6 +27,7 @@ FormField.propTypes = {
   type: PropTypes.string,
   onChange: PropTypes.func,
 };
+
 const Edit = () => {
   const navigate = useNavigate();
   const [birthday, setBirthDate] = useState(null);
@@ -40,10 +40,10 @@ const Edit = () => {
       const requestBody = JSON.stringify({ username, birthday, token });
       await api.put("/users/" + id, requestBody);
 
-      // Login successfully worked --> navigate to the route /game in the GameRouter
+      // Successfully updated and redirect to game
       navigate("/game");
     } catch (error) {
-      alert(`Something went wrong during the login: \n${handleError(error)}`);
+      alert(`Something went wrong during editing: \n${handleError(error)}`);
     }
   };
 
@@ -56,7 +56,6 @@ const Edit = () => {
             value={username}
             onChange={(un: string) => setUsername(un)}
           />
-
           <FormField
             label="Birthday"
             type="date"

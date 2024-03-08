@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { api, handleError } from "helpers/api";
 import User from "models/User";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Button } from "components/ui/Button";
 import "styles/views/Login.scss";
 import BaseContainer from "components/ui/BaseContainer";
@@ -53,9 +53,6 @@ const Login = () => {
       // Store the token into the session storage.
       sessionStorage.setItem("token", user.token);
       sessionStorage.setItem("userId", user.id);
-
-      // Set Status to "ONLINE"
-      //await api.post("/status", { userId: user.id });
 
       // Login successfully worked --> navigate to the route /game in the GameRouter
       navigate("/game");
